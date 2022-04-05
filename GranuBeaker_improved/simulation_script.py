@@ -20,8 +20,6 @@ cohesion = 100000
 pdd = 'large'
 density = 1000
 
-no_of_deletionsteps = 2  # Number of times to delete particles above the height for 50 ml
-
 # Directory to save results to
 results_dir = "results"
 if not os.path.isdir(results_dir):
@@ -74,28 +72,49 @@ sim = coexist.LiggghtsSimulation(sim_path, verbose=True)
 # Run simulation up to given time (s)
 line = "\n" + "-" * 80 + "\n"
 
+# Inserting Particles
 print(line + "Pouring particles" + line)
 sim.step_time(2.0)
 
+# Allowing particles to settle
 print(line + "Letting remaining particles fall and settle" + line)
-
 sim.step_time(1.0)
 
-for i in range(no_of_deletionsteps):
+# First deletion step
+radii_before_deletion = sim.radii()
 
-    print(line + "Deleting particles outside 50 ml region. Round: {i+1}" + line)
+print(line + f"Deleting particles outside 50 ml region. Round: {1}" + line)
+sim.execute_command("delete_atoms region 1")
+radii_after_deletion = sim.radii()
+number_par_deleted = len(radii_before_deletion) - len(radii_after_deletion)
+
+# Delete particles until none are deleted anymore
+i = 1
+
+while number_par_deleted > 0:
+
+    radii_before_deletion = sim.radii()
+
+    print(line + f"Deleting particles outside 50 ml region. Round: {i+1}" + line)
     sim.execute_command("delete_atoms region 1")
     print(line + "Letting remaining particles settle" + line)
     sim.step_time(1.0)
+
+    radii_after_deletion = sim.radii()
+    number_par_deleted = len(radii_before_deletion) - len(radii_after_deletion)
+
+    radii_before_deletion = []
+    radii_after_deletion = []
+
+    i = 1 + i
 
 # Extract particle properties as NumPy arrays
 time = sim.time()
 radii = sim.radii()
 positions = sim.positions()
-velocities = sim.velocities()
 
 print("\n\n" + line)
-print(f"Simulation time: {time} s\nNumber of Particles:\n{len(positions)}")
+print(f"Simulation time: {time} s\nNumber of Particles:{len(positions)} \nNumber of Deletions: {i}")
 print(line + "\n\n")
 
 
