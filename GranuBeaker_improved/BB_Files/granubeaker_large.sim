@@ -8,7 +8,7 @@
 
 # Simulation constants
 variable timestep       equal 1e-5
-variable N              equal 29954         # Number of particles
+variable N              equal 30000         # Number of particles
 variable NRate          equal ${N}/0.1      # Particle insertion rate
 
 
@@ -40,32 +40,51 @@ variable cohPW          equal 0             # Optimise
 variable cohPSW         equal 0             # Optimise
 variable coh            equal 0             # Dummy value, Wall-Sidewall
 
-variable dens           equal 1580.0
+variable dens           equal 1000.0
 
 
 # Particle Size Distribution
-variable r0 equal 0.4e-3
-variable r1 equal 0.45e-3
-variable r2 equal 0.5e-3
-variable r3 equal 0.55e-3
-variable r4 equal 0.6e-3
-variable r5 equal 0.65e-3
-variable r6 equal 0.7e-3
-variable r7 equal 0.75e-3
-variable r8 equal 0.8e-3
-variable r9 equal 0.85e-3
+variable r0  equal 1.15e-3/2
+variable r1  equal 1.2e-3/2
+variable r2  equal 1.25e-3/2
+variable r3  equal 1.3e-3/2
+variable r4  equal 1.35e-3/2
+variable r5  equal 1.4e-3/2
+variable r6  equal 1.45e-3/2
+variable r7  equal 1.5e-3/2
+variable r8  equal 1.55e-3/2
+variable r9  equal 1.6e-3/2
+variable r10 equal 1.65e-3/2
+variable r11 equal 1.7e-3/2
+variable r12 equal 1.75e-3/2
+variable r13 equal 1.8e-3/2
+variable r14 equal 1.85e-3/2
+variable r15 equal 1.9e-3/2
+variable r16 equal 1.95e-3/2
+variable r17 equal 2.0e-3/2
+variable r18 equal 2.05e-3/2
+variable r19 equal 2.1e-3/2
 
-
-variable p0 equal 0.00572841
-variable p1 equal 0.03515202
-variable p2 equal 0.10564903
-variable p3 equal 0.18689946
-variable p4 equal 0.22114417
-variable p5 equal 0.19179761
-variable p6 equal 0.1304201
-variable p7 equal 0.07313468
-variable p8 equal 0.03515202
-variable p9 equal 0.01492249
+variable p0  equal 0.00388449
+variable p1  equal 0.01099289
+variable p2  equal 0.02514963
+variable p3  equal 0.04760835
+variable p4  equal 0.07608559
+variable p5  equal 0.10447000
+variable p6  equal 0.12514024
+variable p7  equal 0.13254216
+variable p8  equal 0.12560501
+variable p9  equal 0.10762357
+variable p10 equal 0.08415827
+variable p11 equal 0.06055852
+variable p12 equal 0.04039795
+variable p13 equal 0.02514963
+variable p14 equal 0.01469880
+variable p15 equal 0.00810854
+variable p16 equal 0.00424249
+variable p17 equal 0.00211457
+variable p18 equal 0.00100804
+variable p19 equal 0.00046127
 
 
 # Set up Beaker
@@ -141,19 +160,32 @@ fix granwalls all wall/gran model hertz tangential history rolling_friction cdt 
 
 
 # Particle Size Distribution
-fix pts0 all particletemplate/sphere 15485863 atom_type 1 density constant ${dens} radius constant ${r0}
-fix pts1 all particletemplate/sphere 20433971 atom_type 1 density constant ${dens} radius constant ${r1}
-fix pts2 all particletemplate/sphere 20433977 atom_type 1 density constant ${dens} radius constant ${r2}
-fix pts3 all particletemplate/sphere 20434457 atom_type 1 density constant ${dens} radius constant ${r3}
-fix pts4 all particletemplate/sphere 20434553 atom_type 1 density constant ${dens} radius constant ${r4}
-fix pts5 all particletemplate/sphere 20435099 atom_type 1 density constant ${dens} radius constant ${r5}
-fix pts6 all particletemplate/sphere 20437121 atom_type 1 density constant ${dens} radius constant ${r6}
-fix pts7 all particletemplate/sphere 20437457 atom_type 1 density constant ${dens} radius constant ${r7}
-fix pts8 all particletemplate/sphere 20437687 atom_type 1 density constant ${dens} radius constant ${r8}
-fix pts9 all particletemplate/sphere 20437811 atom_type 1 density constant ${dens} radius constant ${r9}
+fix pts0  all particletemplate/sphere 15485863 atom_type 1 density constant ${dens} radius constant ${r0}
+fix pts1  all particletemplate/sphere 20433971 atom_type 1 density constant ${dens} radius constant ${r1}
+fix pts2  all particletemplate/sphere 20433977 atom_type 1 density constant ${dens} radius constant ${r2}
+fix pts3  all particletemplate/sphere 20434457 atom_type 1 density constant ${dens} radius constant ${r3}
+fix pts4  all particletemplate/sphere 20434553 atom_type 1 density constant ${dens} radius constant ${r4}
+fix pts5  all particletemplate/sphere 20435099 atom_type 1 density constant ${dens} radius constant ${r5}
+fix pts6  all particletemplate/sphere 20437121 atom_type 1 density constant ${dens} radius constant ${r6}
+fix pts7  all particletemplate/sphere 20437457 atom_type 1 density constant ${dens} radius constant ${r7}
+fix pts8  all particletemplate/sphere 20437687 atom_type 1 density constant ${dens} radius constant ${r8}
+fix pts9  all particletemplate/sphere 20437811 atom_type 1 density constant ${dens} radius constant ${r9}
+fix pts10 all particletemplate/sphere 20437909 atom_type 1 density constant ${dens} radius constant ${r10}
+fix pts11 all particletemplate/sphere 20438087 atom_type 1 density constant ${dens} radius constant ${r11}
+fix pts12 all particletemplate/sphere 20438221 atom_type 1 density constant ${dens} radius constant ${r12}
+fix pts13 all particletemplate/sphere 20438447 atom_type 1 density constant ${dens} radius constant ${r13}
+fix pts14 all particletemplate/sphere 20438681 atom_type 1 density constant ${dens} radius constant ${r14}
+fix pts15 all particletemplate/sphere 20438863 atom_type 1 density constant ${dens} radius constant ${r15}
+fix pts16 all particletemplate/sphere 20439077 atom_type 1 density constant ${dens} radius constant ${r16}
+fix pts17 all particletemplate/sphere 20439277 atom_type 1 density constant ${dens} radius constant ${r17}
+fix pts18 all particletemplate/sphere 20439487 atom_type 1 density constant ${dens} radius constant ${r18}
+fix pts19 all particletemplate/sphere 20439641 atom_type 1 density constant ${dens} radius constant ${r19}
 
 
-fix pdd all particledistribution/discrete/numberbased 49979693 10 pts0 ${p0}  pts1 ${p1}  pts2 ${p2}  pts3 ${p3}  pts4 ${p4}  pts5 ${p5}  pts6 ${p6}  pts7 ${p7}  pts8 ${p8}  pts9 ${p9}
+fix pdd all particledistribution/discrete/numberbased 49979693 20                               &
+    pts0  ${p0}  pts1  ${p1}  pts2  ${p2}  pts3  ${p3}  pts4  ${p4}  pts5  ${p5}  pts6  ${p6}   &
+    pts7  ${p7}  pts8  ${p8}  pts9  ${p9}  pts10 ${p10} pts11 ${p11} pts12 ${p12} pts13 ${p13}  &
+    pts14 ${p14} pts15 ${p15} pts16 ${p16} pts17 ${p17} pts18 ${p18} pts19 ${p19}
 
 
 # Particle Insertion
@@ -181,9 +213,4 @@ thermo_modify lost ignore norm no
 # Define region to delete particles
 
 region 1 block -0.021 0.021 -0.021 0.021 0.03979 INF
-
-# VTK dump script
-
-#dump   dmp all custom/vtk 5000 sim_outputs/sim_0000/particles_0000_*.vtk id type type x y z ix iy iz vx vy vz fx fy fz omegax omegay omegaz radius
-#dump   dmpstl all mesh/vtk 5000 sim_outputs/sim_0000/beaker_0000_*.vtk   wall stress wear
 

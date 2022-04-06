@@ -16,9 +16,12 @@ import coexist
 script_path = "liggghts_script.sim"
 
 print((
-    "\nRunning GranuBeaker simulation:\n"
+    "-----------------------------------------------------------------------\n"
+    "[Python]\n"
+    "Running GranuBeaker simulation:\n"
     f"  Current Directory: {os.getcwd()}\n"
     f"  Simulation Script: {script_path}\n"
+    "-----------------------------------------------------------------------\n"
 ), flush = True)
 
 
@@ -71,10 +74,15 @@ radii = sim.radii()
 positions = sim.positions()
 
 print("\n\n" + line)
-print(f"Simulation time: {time} s\nNumber of Particles:{len(positions)} \nNumber of Deletions: {i}")
+print(f"Simulation time: {time} s\nParticle positions:\n{positions}")
+print(f"Number of particles: {positions.shape}")
+print(f"Number of NaN particles: {np.isnan(positions).any(axis = 1).sum()}")
+print(f"Number of deletion steps to remove particles above 50 ml: {i}")
 print(line + "\n\n")
 
 
 # Save results as efficient binary NPY-formatted files
-np.save(f"{results_dir}/radii.npy", radii)
-np.save(f"{results_dir}/positions.npy", positions)
+np.save(f"results/radii.npy", radii)
+np.save(f"results/positions.npy", positions)
+
+print("Finished! :D")

@@ -8,7 +8,7 @@
 
 # Simulation constants
 variable timestep       equal 1e-5
-variable N              equal 200000        # Number of particles
+variable N              equal 270000        # Number of particles
 variable NRate          equal ${N}/0.1      # Particle insertion rate
 
 
