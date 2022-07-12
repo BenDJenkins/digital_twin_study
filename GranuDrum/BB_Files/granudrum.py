@@ -214,13 +214,17 @@ def save_images(sample, times, radii, positions, velocities):
 
     # Save image as a compressed PNG photo; transpose and flip pixels to have
     # correct orientation for the PNG format
+
+    i_str = str(sample)  # Add zeros in front of sample number in file name.
+    sample_zeros = i_str.zfill(4)
+
     Image.fromarray(pixels_rtd[1].pixels.T[::-1]).save(
-        f"results/gd_rtd_{sample}.png"
+        f"results/gd_rtd_{sample_zeros}.png"
     )
 
     for i, v in enumerate(["abs", "x", "y", "z"]):
         Image.fromarray(pixels_vel[1 + 2 * i].pixels.T[::-1]).save(
-            f"results/gd_vel{v}_{sample}.png"
+            f"results/gd_vel{v}_{sample_zeros}.png"
         )
 
 
@@ -237,7 +241,7 @@ sim = coexist.LiggghtsSimulation(script_path, verbose=True)
 
 # Simulation sampling frequency (Hz) and number of frames to use for one image
 sampling = 100
-frames = 10
+frames = 20
 
 tstart = 5
 tend = 45
@@ -298,7 +302,7 @@ while i < len(checkpoints):
     i += frames
 
 
-# Save complete data from the last few seconds to to disk
+# Save complete data from the last few seconds to disk
 times_last = np.array(times_last)
 radii_last = np.array(radii_last)
 positions_last = np.array(positions_last)
