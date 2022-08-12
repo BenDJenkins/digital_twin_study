@@ -89,7 +89,7 @@ data = {'size': size,
         'slidingfriction': slid,
         'rollingfriction': roll,
         'cohesion': coh,
-        'cohesiveindex': cohesive_index,
+        'y_data': cohesive_index,
         'dynamicangleofrepose': dynamic_angle,
         '3rdorderpolynomial': poly_3,
         '5thorderpolynomial': poly_5

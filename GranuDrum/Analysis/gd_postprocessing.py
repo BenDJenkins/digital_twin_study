@@ -208,21 +208,22 @@ def single_dynamic_angle_of_repose(free_surface_ordinates, diameter=500):
     d_5 = diameter / 5
 
     # Find central point to calculate dynamic angle of repose at
-    length = len(free_surface_ordinates)
-    sum_y = np.sum(free_surface_ordinates[:, 1])
-    average_y = sum_y / length
-    centre_index = find_nearest(free_surface_ordinates[:, 1], average_y)
+    # length = len(free_surface_ordinates)
+    # sum_y = np.sum(free_surface_ordinates[:, 1])
+    # average_y = sum_y / length
+    actual_centre = diameter/2
+    centre_index = find_nearest(free_surface_ordinates[:, 0], actual_centre)
     centre = free_surface_ordinates[centre_index]
 
     # Find the points to use for dynamic angle of repose calculation
     ordinates_left = free_surface_ordinates[0:centre_index]
     ordinates_right = free_surface_ordinates[centre_index:len(free_surface_ordinates)]
 
-    distance_left = find_distance(ordinates_left, centre)
-    distance_right = find_distance(ordinates_right, centre)
+    distance_left = centre[0] - ordinates_left[:, 0]
+    distance_right = ordinates_right[:, 0] - centre[0]
 
-    top_left_index = find_nearest(distance_left, d_5)
-    bottom_right_index = find_nearest(distance_right, d_5)
+    top_left_index = find_nearest(distance_left, d_5/2)
+    bottom_right_index = find_nearest(distance_right, d_5/2)
 
     top_left = ordinates_left[top_left_index]
     bottom_right = ordinates_right[bottom_right_index]
